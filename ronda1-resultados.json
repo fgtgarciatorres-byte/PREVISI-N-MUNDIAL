@@ -1,0 +1,346 @@
+{
+ "ronda": 1,
+ "fecha": "2026-09-24",
+ "auditores_validos": [
+  "GPT-5.6 Sol",
+  "Kimi (Moonshot AI)"
+ ],
+ "auditor_fallido": "DeepSeek — no pudo acceder a los ficheros, devolvió NO_EVALUABLE",
+ "pesos_tablero": {
+  "mecanica_fluidos": 90,
+  "sorpasso_chino": 90,
+  "fallo_contencion_agentes": 90,
+  "otan_crisis": 85,
+  "bifurcacion_computo": 85,
+  "soberania_acoplamiento": 82,
+  "migracion_palanca_canarias": 70,
+  "ormuz_colapso": 88,
+  "captura_anthropic_fuerza": 35
+ },
+ "matriz_divergencia": [
+  {
+   "rama": "mecanica_fluidos",
+   "tablero": 90,
+   "auditores": {
+    "GPT-5.6 Sol": 55,
+    "Kimi (Moonshot AI)": 65
+   },
+   "media_auditores": 60,
+   "sesgo_tablero": 30,
+   "divergencia_max": 35
+  },
+  {
+   "rama": "otan_crisis",
+   "tablero": 85,
+   "auditores": {
+    "GPT-5.6 Sol": 55,
+    "Kimi (Moonshot AI)": 70
+   },
+   "media_auditores": 62,
+   "sesgo_tablero": 23,
+   "divergencia_max": 30
+  },
+  {
+   "rama": "bifurcacion_computo",
+   "tablero": 85,
+   "auditores": {
+    "GPT-5.6 Sol": 62,
+    "Kimi (Moonshot AI)": 75
+   },
+   "media_auditores": 68,
+   "sesgo_tablero": 17,
+   "divergencia_max": 23
+  },
+  {
+   "rama": "sorpasso_chino",
+   "tablero": 90,
+   "auditores": {
+    "GPT-5.6 Sol": 70,
+    "Kimi (Moonshot AI)": 80
+   },
+   "media_auditores": 75,
+   "sesgo_tablero": 15,
+   "divergencia_max": 20
+  },
+  {
+   "rama": "captura_anthropic_fuerza",
+   "tablero": 35,
+   "auditores": {
+    "GPT-5.6 Sol": 20,
+    "Kimi (Moonshot AI)": 25
+   },
+   "media_auditores": 22,
+   "sesgo_tablero": 13,
+   "divergencia_max": 15
+  },
+  {
+   "rama": "soberania_acoplamiento",
+   "tablero": 82,
+   "auditores": {
+    "GPT-5.6 Sol": 68,
+    "Kimi (Moonshot AI)": 80
+   },
+   "media_auditores": 74,
+   "sesgo_tablero": 8,
+   "divergencia_max": 14
+  },
+  {
+   "rama": "fallo_contencion_agentes",
+   "tablero": 90,
+   "auditores": {
+    "GPT-5.6 Sol": 82,
+    "Kimi (Moonshot AI)": 85
+   },
+   "media_auditores": 84,
+   "sesgo_tablero": 6,
+   "divergencia_max": 8
+  },
+  {
+   "rama": "migracion_palanca_canarias",
+   "tablero": 70,
+   "auditores": {
+    "GPT-5.6 Sol": 68,
+    "Kimi (Moonshot AI)": 65
+   },
+   "media_auditores": 66,
+   "sesgo_tablero": 4,
+   "divergencia_max": 5
+  },
+  {
+   "rama": "ormuz_colapso",
+   "tablero": 88,
+   "auditores": {
+    "GPT-5.6 Sol": 90,
+    "Kimi (Moonshot AI)": 85
+   },
+   "media_auditores": 88,
+   "sesgo_tablero": 0,
+   "divergencia_max": 5
+  }
+ ],
+ "auditorias": [
+  {
+   "auditor": "GPT-5.6 Sol",
+   "fecha": "2026-09-24",
+   "tarea_1_rama_peor_sostenida": {
+    "rama_id": "mecanica_fluidos",
+    "peso_del_analista": 90,
+    "peso_que_yo_asignaria": 55,
+    "motivo": "El material aporta ejemplos compatibles con competencia entre facciones, respuestas oportunistas y resultados emergentes sin coordinación central, pero casi todos pueden incorporarse retrospectivamente al modelo tanto si hay cooperación como si hay conflicto. El propio registro reconoce que explica retrospectivamente mejor de lo que predice. Un peso 90 exigiría predicciones ex ante diferenciadoras frente a modelos rivales y un criterio claro de fracaso; las seis señales presentadas no alcanzan ese estándar."
+   },
+   "tarea_2_fusible_no_falsable": {
+    "rama_id": "captura_anthropic_fuerza",
+    "fusible_original": "¿El activo se reparte CON Amazon/Google (cómplices) o A COSTA de ellos (víctimas)? ¿Llega como operación secuenciada astuta o como pisotón inercial? La metáfora del elefante predice lo segundo.",
+    "por_que_no_es_falsable": "No fija fecha, variable observable ni umbral que obligue a subir o bajar la rama. Además, 'operación secuenciada astuta' y 'pisotón inercial' permiten clasificación interpretativa posterior. Es una pregunta diagnóstica, no un fusible.",
+    "reescritura_propuesta": "Hasta el 22-03-2027: subir la rama a 50 o más solo si una actuación formal del Gobierno de EE.UU. produce pérdida de control, sustitución forzada de la dirección, adquisición obligatoria, participación estatal impuesta o transferencia coercitiva de activos de Anthropic. Bajarla a 15 o menos si durante ese periodo no se inicia ninguna actuación formal de ese tipo y las medidas estatales relevantes contra laboratorios de IA se aplican de forma comparable a Anthropic y a sus principales competidores."
+   },
+   "tarea_3_ausencia": {
+    "que_falta": "Un horizonte temporal y una definición de evento comunes para interpretar los pesos 0-100. El paquete mezcla probabilidades de sucesos concretos, confianza en modelos causales y estados ya parcialmente consumados sin especificar qué significa, por ejemplo, un 85 o un 90 dentro de un periodo determinado.",
+    "por_que_importa": "Sin horizonte y evento resoluble, los pesos no son probabilidades comparables ni pueden calibrarse posteriormente. Un 90 de 'mecánica de fluidos', un 90 de 'sorpasso chino' y un 88 de 'cierre de Ormuz' miden objetos epistemológicamente distintos; por ello la precisión aparente de la escala 0-100 supera su capacidad real de ser evaluada."
+   },
+   "tarea_4_pesos": [
+    {
+     "rama_id": "mecanica_fluidos",
+     "mi_peso": 55,
+     "justificacion": "Vi el peso del analista antes de poder fijar el mío, por lo que mi asignación no puede considerarse plenamente ciega. Las señales son compatibles con el modelo, pero su elasticidad explicativa y la falta de predicciones diferenciadoras reducen mucho la confianza que asignaría."
+    },
+    {
+     "rama_id": "sorpasso_chino",
+     "mi_peso": 70,
+     "justificacion": "Hay evidencia sustancial en el paquete de reducción de la distancia de capacidades y de avance del ecosistema abierto chino, pero 'sorpasso' y 'liderazgo profesional' son afirmaciones más fuertes que los benchmarks y ejemplos presentados; además aparecen contrapesos de coste, licencia, infraestructura y financiación."
+    },
+    {
+     "rama_id": "fallo_contencion_agentes",
+     "mi_peso": 82,
+     "justificacion": "La repetición de incidentes, la presencia de varios laboratorios y las fuentes externas descritas sostienen un problema sistémico mejor que un conjunto de anécdotas aisladas. Rebajo respecto al 90 porque parte de la evidencia procede de entornos de evaluación o despliegues experimentales y debe distinguirse entre conducta peligrosa observada, daño externo consumado y fallo de salvaguardas en producción."
+    },
+    {
+     "rama_id": "otan_crisis",
+     "mi_peso": 55,
+     "justificacion": "El paquete demuestra tensiones transatlánticas y episodios de exclusión europea, pero una de las hipótesis fuertes sobre coordinación EE.UU.-Rusia queda expresamente refutada y varias señales incluidas, como la guerra del grano, no prueban una deriva estadounidense de salida de la OTAN. 'Crisis existencial' excede la evidencia mostrada."
+    },
+    {
+     "rama_id": "bifurcacion_computo",
+     "mi_peso": 62,
+     "justificacion": "La fragilidad del tool-calling y de los formatos estructurados aparece en varios ejemplos, incluida evidencia que sugiere que no depende únicamente de cuantización. Sin embargo, cinco señales y unos pocos modelos no bastan para elevar a 85 una ley general sobre dónde se localizará la computación agéntica."
+    },
+    {
+     "rama_id": "soberania_acoplamiento",
+     "mi_peso": 68,
+     "justificacion": "Los ejemplos de construcción gradual de capacidad industrial, energética y logística son coherentes con la tesis. El problema es que el concepto de soberanía por acoplamiento es suficientemente amplio para absorber fenómenos muy distintos y el fusible tampoco fija un horizonte ni un criterio cuantitativo."
+    },
+    {
+     "rama_id": "migracion_palanca_canarias",
+     "mi_peso": 68,
+     "justificacion": "La evidencia presentada sostiene con bastante fuerza la existencia de capacidad de instrumentalización fronteriza y justifica investigación de episodios concretos. Rebajo porque la evidencia más fuerte corresponde a Ceuta, mientras la rama conserva 'Canarias' en su identificador, y porque capacidad, conocimiento institucional, facilitación e intención estratégica deben permanecer separados."
+    },
+    {
+     "rama_id": "ormuz_colapso",
+     "mi_peso": 90,
+     "justificacion": "Es la rama mejor operacionalizada del paquete: define métricas observables, reconoce discrepancias entre conteo de buques y volumen, registra evidencia contraria y dispone de un umbral de reversión. La incertidumbre residual está principalmente en medición y definición de 'cerrado de facto', no en la existencia de una restricción severa según el material."
+    },
+    {
+     "rama_id": "captura_anthropic_fuerza",
+     "mi_peso": 20,
+     "justificacion": "El paquete documenta conflicto regulatorio y político alrededor de Anthropic, pero no presenta una acción estatal que constituya confiscación, pérdida coercitiva de control o reparto forzado del activo. La propia rama reconoce que la presión reputacional no es acción del Estado y que la hipótesis del 22 de septiembre fue formulada como apuesta."
+    }
+   ],
+   "tarea_5_simetria": {
+    "estandar_atribucion_A": "Alto: se considera especialmente significativa porque la atribución procede de un cuerpo estatal español con funciones de seguridad e inteligencia y porque el tablero distingue explícitamente esa atribución institucional de una inferencia del analista. Aun así, es una atribución de un organismo interesado en el episodio y requiere corroboración para elevarla a hecho probado sobre decisión del Estado marroquí.",
+    "estandar_atribucion_B": "Medio: combina un documento del Congreso de EE.UU., un think tank, una declaración atribuida a un embajador israelí y, decisivamente, una inferencia semántica sobre la negativa de una diplomática a utilizar 'soberanía'. Es suficiente para demostrar formulaciones ambiguas o ausencia de una afirmación explícita, pero el tablero convierte esa combinación en un patrón 'establecido' con un componente interpretativo mayor que en A y C.",
+    "estandar_atribucion_C": "Muy alto: el tablero exige y obtiene atribución formal del Gobierno alemán, identificación probable del servicio responsable y una respuesta estatal observable y costosa —cierres diplomáticos—. La atribución fue públicamente realizada por Alemania, aunque Rusia la negó.",
+    "es_el_mismo_estandar": "NO",
+    "donde_se_exige_mas": "C; secundariamente A. En C se apoya la conclusión en una atribución formal de un Gobierno acompañada de medidas estatales. En A se destaca que la atribución procede de un cuerpo estatal. En B se acepta una inferencia construida parcialmente a partir de terminología y de una no-respuesta.",
+    "donde_se_exige_menos": "B. El salto más débil es tratar la elección de 'control' en vez de 'soberanía' como posición diplomática concluyente y sumar esa inferencia a fuentes de naturaleza distinta para declarar establecido un patrón.",
+    "cita_que_lo_demuestra": "A: 'LA ATRIBUCIÓN LA HACE UN CUERPO DEL ESTADO ESPAÑOL, NO UN ANALISTA'. B: 'En diplomacia, negarse a afirmar soberanía cuando se pregunta directamente ES una posición' y 'el patrón [...] queda establecido'. C: 'ALEMANIA ATRIBUYÓ FORMALMENTE el ataque a RUSIA [...] y ANUNCIÓ EL CIERRE'."
+   },
+   "objeciones_conceptuales": [
+    "La escala 0-100 mezcla probabilidad de eventos, confianza en mecanismos causales y grado de confirmación de estados ya observados; sin horizonte común no puede tratarse como una escala probabilística homogénea.",
+    "Existe riesgo de doble contabilización: un mismo episodio aparece como señal de varias ramas y después la convergencia entre esas ramas puede parecer evidencia independiente cuando comparte la misma causa o fuente.",
+    "Las etiquetas 'confirmada' son demasiado fuertes para ramas-modelo como mecanica_fluidos o soberania_acoplamiento, cuyos límites permiten reinterpretar una gama muy amplia de resultados posteriores.",
+    "Los fusibles tienen calidad desigual: Ormuz dispone de umbral, duración y fuentes de medición; otras ramas usan preguntas, metáforas o condiciones sin plazo. Esa heterogeneidad hace que unas hipótesis puedan perder peso mecánicamente y otras sean mucho más difíciles de refutar.",
+    "La prueba A/B/C revela una asimetría metodológica concreta: el registro distingue explícitamente atribución institucional en A y formal en C, pero en B permite que una combinación de documentos, declaraciones y silencio semánticamente interpretado alcance lenguaje de patrón establecido."
+   ],
+   "afirmaciones_numericas": [],
+   "sesgo_direccional_detectado": {
+    "existe": "SI",
+    "direccion": "En la muestra de simetría, mayor permisividad inferencial para una conclusión desfavorable a EE.UU./Israel que para las atribuciones relativas a Marruecos o Rusia. Esto no demuestra un sesgo general del conjunto de 22 ramas, pero sí una asimetría local verificable en estas tres atribuciones.",
+    "evidencia_textual": "Para Marruecos se enfatiza 'LA ATRIBUCIÓN LA HACE UN CUERPO DEL ESTADO ESPAÑOL, NO UN ANALISTA'; para Rusia, 'ALEMANIA ATRIBUYÓ FORMALMENTE'; para EE.UU./Israel, el tablero afirma que 'negárse a afirmar soberanía [...] ES una posición' y concluye que 'el patrón [...] queda establecido'."
+   }
+  },
+  {
+   "auditor": "Kimi (Moonshot AI)",
+   "fecha": "2026-09-24",
+   "tarea_1_rama_peor_sostenida": {
+    "rama_id": "autonomia_europea_falla",
+    "peso_del_analista": 80,
+    "peso_que_yo_asignaria": 45,
+    "motivo": "Es la peor relacion peso/evidencia de las 22 ramas: solo 3 senales (la densidad mas baja del tablero junto a sur_global y canada_ue), todas anteriores al 20 de julio —ningun dato nuevo en mas de dos meses de una ventana de 79 dias—, todas con signo '+' y sin un solo contrapeso registrado. Dos de las tres senales son debiles: 'Espana tentada de volver al F-35' es una tentacion, no un hecho, y 'Ucrania compra componentes chinos con fondos de la UE' es ironico pero no mide autonomia europea de forma directa. El fusible ('<5 anos') no tiene fecha de revision. El resumen admite una tension no resuelta con otan_crisis [85], que casi duplica su peso con 12 senales. Un 80 implica alta confianza; aqui la confianza descansa en tres titulares de julio y silencio desde entonces."
+   },
+   "tarea_2_fusible_no_falsable": {
+    "rama_id": "mecanica_fluidos",
+    "fusible_original": "Se completa observando las MORDEDURAS internas: cuando una faccion frena a otra. Si solo se ve saqueo unanime y nunca friccion interna, el modelo esta incompleto. LIMITE (K3): explica retrospectivamente mejor de lo que predice.",
+    "por_que_no_es_falsable": "No tiene fecha, no tiene umbral medible y su condicion ('friccion interna', 'mordeduras') puede declararse cumplida o incumplida a discrecion del analista: cualquier episodio de disputa interna cuenta como 'mordedura' y cualquier periodo de calma como 'saqueo unanime'. Ademas es un fusible sobre el propio modelo (una metahipotesis), no sobre el mundo, lo que lo hace doblemente inmune a la refutacion: si hay friccion, el modelo se confirma; si no hay friccion, el modelo 'esta incompleto' pero no se especifica que peso le corresponde ni cuando se revisa.",
+    "reescritura_propuesta": "Antes del 31 de diciembre de 2026, contar los casos documentados en fuentes de primer nivel de una faccion nombrada en el resumen (MAGA, armamento, petroleras, Silicon Valley) frenando materialmente a otra, con criterio estricto: veto regulatorio ejecutado con efecto, bloqueo presupuestario consumado, o ruptura publica entre dos facciones con coste politico real para ambas. Si hay 0 casos, el peso baja a 70 y se registra como limite confirmado; si hay 2 o mas, sube a 95; si hay 1, se mantiene y se revisa el fusible el 31-ene-2027."
+   },
+   "tarea_3_ausencia": {
+    "que_falta": "Un registro de calibracion: en 254 senales y 22 ramas no existe ni una sola tabla de resolucion de fusibles (pendiente / disparado / fallido, con fecha de emision y fecha de resolucion) ni ningun contraste de los pesos 0-100 asignados con resultados fechados. El material cita reglas del directorio (4, 8, 9) y declara probabilidades, pero jamas registra cuantas veces un peso de 80 se materializo ni cuantas veces un fusible con fecha vencio sin dispararse.",
+    "por_que_importa": "El objeto declarado del registro es asignar probabilidades con fusibles que obligan a subirla o bajarla. Un instrumento probabilistico sin track record de aciertos/fallos es incompleto para su propio fin: sin scorekeeping no se puede saber si el analista esta bien calibrado o si los pesos son retorica con numeros. Es la omision que convertiria el tablero, que ya corrige errores con honestidad, en un instrumento verificable."
+   },
+   "tarea_4_pesos": [
+    {
+     "rama_id": "mecanica_fluidos",
+     "mi_peso": 65,
+     "justificacion": "Nota: los pesos del analista eran visibles en el paquete antes de decidir; los he visto. Modelo heuristico util y con buenas formulaciones, pero el propio registro admite que 'explica retrospectivamente mejor de lo que predice' y su fusible no es falsable; como 'confianza en un marco interpretativo' 65, no 90."
+    },
+    {
+     "rama_id": "sorpasso_chino",
+     "mi_peso": 80,
+     "justificacion": "Evidencia fuerte y multidimensional (cuota de uso, K3, CXMT, guerra de precios), pero con matices serios que el propio tablero registra: licencia propietaria no libre, 1,56 TB que no caben en local, Z.ai bajo presion de dilucion, y gap frontier residual admitido por Moonshot."
+    },
+    {
+     "rama_id": "fallo_contencion_agentes",
+     "mi_peso": 85,
+     "justificacion": "La mejor documentada del tablero: regulador independiente (AISI), fuente primaria con acceso (METR/Redwood), cuatro laboratorios con incidentes, cronologia reconstruida y divulgacion institucional nueva (marco de OpenAI, metrica de Anthropic). El 90 del analista es defendible; quedo en 85 por la dependencia de autorreportes parciales y evaluaciones autoevaluadas."
+    },
+    {
+     "rama_id": "otan_crisis",
+     "mi_peso": 70,
+     "justificacion": "La fractura atlantica es real, pero la senal mas fuerte del periodo (visita de Ratcliffe) se reencuadro hacia la disuasion y el Art.5, refutando la lectura de 'pinza'; el fusible es vago ('reafirmacion solida' sin fecha ni umbral) y la rama convive sin resolver con autonomia_europea_falla."
+    },
+    {
+     "rama_id": "bifurcacion_computo",
+     "mi_peso": 75,
+     "justificacion": "Evidencia tecnica consistente de dos modelos independientes (Bonsai, Laguna S) mostrando que la fragilidad de formato es propiedad de clase; el propio tablero rechazo la bajada a 80 con un argumento tecnico solido. 75 refleja que es un modelo parcialmente confirmado con un limite termico no resuelto."
+    },
+    {
+     "rama_id": "soberania_acoplamiento",
+     "mi_peso": 80,
+     "justificacion": "Multiples confirmaciones independientes y con mecanismo (DUV propia antes de la MATCH Act, ESPO medible en cuotas de crudo, Ruta del Mar del Norte con requisito legal ruso, SAFE/PESCO, estrategia RUP). El 82 del analista es razonable; 80 por la distancia entre influencia industrial/portuaria y presencia militar, que el propio registro acota con precision."
+    },
+    {
+     "rama_id": "migracion_palanca_canarias",
+     "mi_peso": 65,
+     "justificacion": "La atribucion institucional (Guardia Civil) y la investigacion judicial elevan el estandar, pero el propio tablero documenta la multicausalidad (sentencia del Supremo del 8-jul como detonante generado en Madrid) y la contradiccion interna del Gobierno; el fusible exige correlacion temporal con la agenda bilateral que aun no se demuestra."
+    },
+    {
+     "rama_id": "ormuz_colapso",
+     "mi_peso": 85,
+     "justificacion": "El dato de trafico es el mas duro del tablero (convergencia de conteo y volumen tras la resolucion de la discrepancia del 25-ago) y el fusible es el mejor redactado: solo conteo de transitos, con umbral y ventana. El 88 del analista es defendible; 85 por la incertidumbre residual sobre la flota gris y la posibilidad de reapertura negociada que Citi descuenta."
+    },
+    {
+     "rama_id": "captura_anthropic_fuerza",
+     "mi_peso": 25,
+     "justificacion": "Mecanismo especulativo que Fernando mismo califica de 'ni siquiera teoria'; la evidencia real (veto del Pentagono, carta de Comercio) admite la lectura mas parsimoniosa registrada en la propia rama: exclusion administrativa, no asalto. El fusible son preguntas retoricas sin fecha. 25, no 35."
+    }
+   ],
+   "tarea_5_simetria": {
+    "estandar_atribucion_A": "Atribucion institucional de un cuerpo del Estado espanol (Guardia Civil, con 'camaras del puesto fronterizo' como evidencia tecnica) aceptada de inmediato como prueba fuerte: el propio registro dice que 'eleva el estandar de evidencia por encima del capacidad, no intencion'. No se pide el documento primero del informe ni corroboracion externa.",
+    "estandar_atribucion_B": "Cuatro piezas documentales publicas (informe del Congreso de EE.UU., AEI, embajador israeli ante la ONU, respuesta publica de Erlich con cobertura de agencia) y, aun asi, el analista objeto primero que era 'un eslabon que la evidencia no pide', luego exige 'verificar en fuente Elcano antes de usar en documento formal' y matiza la conclusion: 'Esto NO prueba coordinacion operativa en el episodio de Ceuta'.",
+    "estandar_atribucion_C": "Atribucion formal del Gobierno aleman aceptada de inmediato como hecho confirmado ('sabotaje ruso confirmado con represalia diplomatica'), con correccion de encuadre (drones convencionales, no IA desatada) pero sin exigencia de corroboracion independiente ni matiz sobre lo que la atribucion no prueba.",
+    "es_el_mismo_estandar": "NO",
+    "donde_se_exige_mas": "Atribucion B (EE.UU. e Israel): objecion previa, exigencia de documento primario y matiz de 'no prueba coordinacion operativa', ninguno de los cuales se aplica a A ni a C.",
+    "donde_se_exige_menos": "Atribucion A (Marruecos): se acepta la atribucion de la Guardia Civil sin pedir el documento primario ni corroboracion externa, precisamente porque respalda la tesis del analista de actores marroquies. C queda en medio: la respuesta estatal costosa (cierre de la Casa Rusa y el consulado) funciona como senal de credibilidad que A no tiene.",
+    "cita_que_lo_demuestra": "En A: 'LA ATRIBUCION LA HACE UN CUERPO DEL ESTADO ESPANOL, NO UN ANALISTA... Esto eleva el estandar de evidencia por encima del capacidad, no intencion — aqui hay atribucion institucional.' En B: 'el analista objetó que la evidencia señalaba a actores marroquíes y que añadir a Washington y Tel Aviv era un eslabón que la evidencia no pide' y 'Verificar en fuente Elcano antes de usar en documento formal... Esto NO prueba coordinación operativa en el episodio de Ceuta.'"
+   },
+   "objeciones_conceptuales": [
+    "Las ramas 'modelo' (mecanica_fluidos, bifurcacion_computo, dos_burbujas) mezclan dos categorias distintas: hipotesis falsables sobre el mundo y marcos interpretativos. Asignarles un peso 0-100 como si fueran probabilidades de evento es un error de categoria: que 'la mecanica de fluidos' tenga 90% de probabilidad no significa nada verificable sin un outcome definido. El instrumento no distingue confianza en un modelo de probabilidad de un resultado.",
+    "El patron recurrente 'Fernando acierta el mecanismo, falla el actor' (registrado siete u ocho veces) opera como mecanismo de inmunizacion: una hipotesis que nunca falla del todo nunca se refuta. Combinado con las 'apuestas' explicitamente 'ni siquiera teoria' que reciben peso positivo (captura_anthropic_fuerza), el tablero introduce contenido no falsable con apariencia de registro probabilistico.",
+    "Los conflictos de interes se declaran ('[DECLARACION DE CONFLICTO DE INTERES — REDACTADA EN RONDA CIEGA]') pero no se neutralizan operativamente: no se indica que procedimiento compensa el sesgo (doble contabilidad, revision externa de senales, exclusion del analista de ramas sobre su propio creador). Una declaracion sin mecanismo corrector es etiqueta, no control.",
+    "El registro corrige errores con honestidad notable, pero la correccion misma se convierte a veces en refuerzo: tras objetar la hipotesis de Fernando sobre Ceuta, el analista acepta la 'version defendible' que 'refuerza directamente esta rama'. La estructura de la conversacion hace que casi toda objecion termine integrada como matiz confirmador, lo que erosiona la capacidad de poda."
+   ],
+   "afirmaciones_numericas": [
+    {
+     "afirmacion": "Entre 50.000 y 72.000 personas entraron irregularmente en Ceuta en 24-72 horas (31-jul), con al menos 88 fallecidos por ahogamiento",
+     "fuente": "Interior / Elcano / AthenaLAB / Delegacion del Gobierno, citadas en el registro",
+     "confianza": "media"
+    },
+    {
+     "afirmacion": "Kimi K3: 2,8B parametros MoE con 1M de contexto, #3 mundial",
+     "fuente": "Registro atribuido a Moonshot",
+     "confianza": "baja"
+    },
+    {
+     "afirmacion": "CXMT debuta en Shanghai con subida del +466-535% y capitalizacion de ~539.000M$, la mayor OPV de Asia 2026",
+     "fuente": "Cobertura de mercado citada en el registro (27-jul)",
+     "confianza": "media"
+    },
+    {
+     "afirmacion": "Ormuz: ~5 buques/dia desde finales de febrero (3% de la media pre-crisis de 60-100/dia); 1 transito el 9-ago (PortWatch); 2 petroleros el 24-ago (Reuters/Kpler); convergencia de conteo y volumen tras la resolucion del 25-ago",
+     "fuente": "Kpler / Windward / PortWatch / Vortexa / straits.live, citados en el registro",
+     "confianza": "media-alta"
+    },
+    {
+     "afirmacion": "La Reserva Estrategica de Petroleo de EE.UU. cayo por debajo de 300 millones de barriles, minimo desde enero de 1983",
+     "fuente": "Registro (sin fuente primaria citada en el fragmento)",
+     "confianza": "media-baja"
+    },
+    {
+     "afirmacion": "Brent cerro en 107,63$ el 10-11 de septiembre, +80% en el ano",
+     "fuente": "Registro",
+     "confianza": "media"
+    },
+    {
+     "afirmacion": "Anthropic declara que la IA lidera el 26% de su trabajo de I+D y colaboro en mas del 90% del trabajo de investigacion en agosto",
+     "fuente": "Reuters (17-sep) citando a Anthropic",
+     "confianza": "media-alta"
+    },
+    {
+     "afirmacion": "Starlink ejecuto 300.000 maniobras de evasion en 2025 y es el 71% de los satelites activos",
+     "fuente": "Registro",
+     "confianza": "media"
+    },
+    {
+     "afirmacion": "Deuda total de EE.UU. a punto de superar los 40 billones; CBO eleva el deficit 2026 a 2,1 billones",
+     "fuente": "CBO citado en el registro (14-18 ago)",
+     "confianza": "media"
+    }
+   ],
+   "sesgo_direccional_detectado": {
+    "existe": "SI",
+    "direccion": "Estandar de evidencia asimetrico que protege la tesis previa del analista: se acepta sin escrutinio adicional la atribucion que refuerza su lectura de Ceuta (actor marroqui, via Guardia Civil) y la atribucion estatal neutral (Alemania-Rusia), mientras se aplica triple escrutinio (objecion previa, exigencia de documento primario, matiz de 'no prueba coordinacion operativa') a la atribucion que complicaba su lectura y sustentaba la hipotesis de Fernando (arquitectura EE.UU.-Israel-Marruecos). El sesgo no es de contenido sino de umbral: la misma clase de evidencia (atribucion institucional con fuente publica) se trata como prueba concluyente en A y C y como insuficiente en B.",
+    "evidencia_textual": "Aceptacion inmediata en A: 'Esto eleva el estandar de evidencia por encima del capacidad, no intencion — aqui hay atribucion institucional.' Escrutinio triple en B: 'el analista objetó que la evidencia señalaba a actores marroquíes y que añadir a Washington y Tel Aviv era un eslabón que la evidencia no pide'; 'Verificar en fuente Elcano antes de usar en documento formal'; 'Esto NO prueba coordinación operativa en el episodio de Ceuta.' Aceptacion inmediata en C: 'el hecho real —sabotaje ruso confirmado con represalia diplomática— es más grave y más verificable.' Ninguna de las dos cautelas aplicadas a B se aplica a A o C."
+   }
+  }
+ ]
+}
