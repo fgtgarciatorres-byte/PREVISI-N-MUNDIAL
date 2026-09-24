@@ -1,0 +1,229 @@
+<!doctype html><html lang="es"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Consolidador de auditorías</title>
+<style>
+:root{--bg:#0b1a2a;--bg2:#10273d;--tinta:#e8f1f8;--ten:#8fa9bf;--fan:#4a6580;
+--marco:#5b9bd5;--placa:#3fa778;--sismo:#e08a3c;--alerta:#e0555f;--linea:#22425f;
+--mono:'SF Mono',ui-monospace,Menlo,monospace;--sans:'Inter',-apple-system,system-ui,sans-serif;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0);padding-bottom:env(safe-area-inset-bottom,0)}
+*{box-sizing:border-box;margin:0;padding:0}html,body{max-width:100%}
+body{background:linear-gradient(180deg,var(--bg2),var(--bg));background-attachment:fixed;color:var(--tinta);
+font-family:var(--sans);line-height:1.55;min-height:100%;padding:clamp(12px,3vw,30px)}
+.w{max-width:1080px;margin:0 auto}
+h1{font-size:clamp(20px,3vw,28px);font-weight:700;letter-spacing:-.02em}
+.k{font-family:var(--mono);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--ten);margin-bottom:7px}
+h2{font-size:13.5px;font-family:var(--mono);letter-spacing:.13em;text-transform:uppercase;color:var(--marco);
+margin:28px 0 11px;padding-bottom:7px;border-bottom:1px solid var(--linea)}
+p{font-size:13.5px;color:var(--ten);margin-bottom:11px}b{color:var(--tinta)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin:14px 0}
+.box{border:1px solid var(--linea);border-radius:11px;padding:12px;background:rgba(11,26,42,.5)}
+.box label{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--fan);display:block;margin-bottom:7px}
+textarea{width:100%;min-height:150px;background:#08151f;color:var(--tinta);border:1px solid var(--linea);
+border-radius:8px;padding:9px;font-family:var(--mono);font-size:11px;resize:vertical}
+button{background:var(--marco);color:#05121d;border:0;border-radius:8px;padding:11px 20px;
+font-weight:700;font-size:14px;cursor:pointer;margin:6px 6px 6px 0;font-family:var(--sans)}
+button.sec{background:transparent;color:var(--ten);border:1px solid var(--linea)}
+.tw{border:1px solid var(--linea);border-radius:11px;overflow-x:auto;background:rgba(11,26,42,.35);padding:2px 10px;margin:12px 0}
+table{width:100%;border-collapse:collapse;font-size:12.5px;min-width:520px}
+th{font-family:var(--mono);font-size:9px;letter-spacing:.09em;text-transform:uppercase;color:var(--fan);
+text-align:left;padding:8px 7px;border-bottom:1px solid var(--linea)}
+td{padding:8px 7px;border-bottom:1px solid rgba(34,66,95,.5);color:var(--ten);vertical-align:top}
+td.id{color:var(--tinta);font-weight:600;font-family:var(--mono);font-size:11px}
+.n{font-family:var(--mono);text-align:right;white-space:nowrap}
+.dv{font-family:var(--mono);font-weight:700;text-align:right}
+.hi{color:var(--alerta)}.mid{color:var(--sismo)}.lo{color:var(--placa)}
+.msg{padding:11px 14px;border-radius:9px;margin:10px 0;font-size:13px;display:none}
+.msg.err{background:rgba(224,85,95,.12);border:1px solid rgba(224,85,95,.4);color:#ffc9cc;display:block}
+.msg.ok{background:rgba(63,167,120,.1);border:1px solid rgba(63,167,120,.4);color:#b6e8d0;display:block}
+.chip{display:inline-block;font-family:var(--mono);font-size:10px;padding:3px 8px;border-radius:12px;
+border:1px solid var(--linea);margin:2px 4px 2px 0;color:var(--ten)}
+.chip.si{border-color:rgba(224,85,95,.5);color:#ffb3b7}
+.chip.no{border-color:rgba(63,167,120,.5);color:#9fe0c0}
+ul{margin:0 0 12px 18px}li{font-size:13px;color:var(--ten);margin-bottom:7px}
+footer{margin-top:30px;padding-top:14px;border-top:1px solid var(--linea);font-size:11px;color:var(--fan)}
+#out{display:none}
+</style>
+<div class="w">
+<div class="k">Ronda 1 · consolidación</div>
+<h1>Consolidador de auditorías cruzadas</h1>
+<p>Pega la respuesta JSON de cada auditor. La herramienta calcula la <b>matriz de
+divergencia de pesos</b> frente al tablero, separa objeciones conceptuales de
+afirmaciones numéricas y destaca dónde los tres coinciden —que es la señal fuerte— y
+dónde uno se desmarca.</p>
+
+<div class="grid">
+<div class="box"><label>Auditor 1 — JSON</label><textarea id="a1" placeholder="{ ... }"></textarea></div>
+<div class="box"><label>Auditor 2 — JSON</label><textarea id="a2" placeholder="{ ... }"></textarea></div>
+<div class="box"><label>Auditor 3 — JSON</label><textarea id="a3" placeholder="{ ... }"></textarea></div>
+</div>
+<button onclick="run()">Consolidar</button>
+<button class="sec" onclick="demo()">Cargar ejemplo</button>
+<button class="sec" onclick="limpiar()">Limpiar</button>
+<div id="msg" class="msg"></div>
+
+<div id="out">
+<h2>Matriz de divergencia de pesos</h2>
+<p>Divergencia = diferencia máxima entre auditores sobre la misma rama. Una divergencia
+alta significa que la rama no está sostenida de forma robusta: lectores independientes
+llegan a conclusiones distintas con el mismo material.</p>
+<div class="tw"><table id="tp"></table></div>
+
+<h2>Prueba de simetría de evidencia</h2>
+<div id="sim"></div>
+
+<h2>Sesgo direccional</h2>
+<div id="ses"></div>
+
+<h2>Objeciones conceptuales (se evalúan por razonamiento)</h2>
+<div id="obj"></div>
+
+<h2>Afirmaciones numéricas (verificar una a una antes de incorporar)</h2>
+<div class="tw"><table id="tn"></table></div>
+
+<h2>Fusibles señalados como no falsables</h2>
+<div id="fus"></div>
+
+<h2>Exportar</h2>
+<button onclick="exportar()">Descargar consolidado (JSON)</button>
+</div>
+
+<footer>Los pesos del tablero están embebidos para el cálculo de divergencia.
+Nada se envía a ningún servidor: todo el procesamiento ocurre en este navegador.</footer>
+</div>
+<script>
+var PESOS={mecanica_fluidos:90,sorpasso_chino:90,fallo_contencion_agentes:90,
+otan_crisis:85,bifurcacion_computo:85,soberania_acoplamiento:82,
+migracion_palanca_canarias:70,ormuz_colapso:88,captura_anthropic_fuerza:35};
+var CONS=null;
+function $(id){return document.getElementById(id);}
+function say(t,cls){var m=$('msg');m.textContent=t;m.className='msg '+cls;}
+function parse(txt){
+  if(!txt||!txt.trim())return null;
+  var s=txt.trim();
+  var i=s.indexOf('{'),j=s.lastIndexOf('}');
+  if(i<0||j<0)throw new Error('no se encontró un objeto JSON');
+  s=s.slice(i,j+1);
+  return JSON.parse(s);
+}
+function run(){
+  var A=[],errs=[];
+  ['a1','a2','a3'].forEach(function(id,n){
+    try{var o=parse($(id).value); if(o){o.__n=o.auditor||('Auditor '+(n+1));A.push(o);} }
+    catch(e){errs.push('Auditor '+(n+1)+': '+e.message);}
+  });
+  if(errs.length){say('Error al leer — '+errs.join(' · '),'err');return;}
+  if(!A.length){say('Pega al menos una respuesta.','err');return;}
+  CONS=A;
+  pesos(A);simetria(A);sesgo(A);objeciones(A);numericas(A);fusibles(A);
+  $('out').style.display='block';
+  say(A.length+' auditoría(s) consolidada(s): '+A.map(function(x){return x.__n;}).join(', '),'ok');
+}
+function pesos(A){
+  var ids=Object.keys(PESOS);
+  var h='<thead><tr><th>Rama</th><th class="n">Tablero</th>';
+  A.forEach(function(a){h+='<th class="n">'+a.__n+'</th>';});
+  h+='<th class="dv">Divergencia</th></tr></thead><tbody>';
+  var filas=[];
+  ids.forEach(function(id){
+    var vals=[],cel='';
+    A.forEach(function(a){
+      var arr=(a.tarea_4_pesos||[]),f=null;
+      for(var k=0;k<arr.length;k++){if(arr[k].rama_id===id){f=arr[k];break;}}
+      if(f&&typeof f.mi_peso==='number'){vals.push(f.mi_peso);cel+='<td class="n">'+f.mi_peso+'</td>';}
+      else cel+='<td class="n">—</td>';
+    });
+    var todos=vals.concat([PESOS[id]]);
+    var dv=vals.length?Math.max.apply(null,todos)-Math.min.apply(null,todos):null;
+    var cls=dv===null?'':(dv>=25?'hi':(dv>=12?'mid':'lo'));
+    filas.push({id:id,dv:dv===null?-1:dv,html:'<tr><td class="id">'+id+'</td><td class="n">'+PESOS[id]+'</td>'+cel+
+      '<td class="dv '+cls+'">'+(dv===null?'—':dv)+'</td></tr>'});
+  });
+  filas.sort(function(a,b){return b.dv-a.dv;});
+  filas.forEach(function(f){h+=f.html;});
+  $('tp').innerHTML=h+'</tbody>';
+}
+function simetria(A){
+  var h='';
+  A.forEach(function(a){
+    var s=a.tarea_5_simetria||{};
+    var mismo=(s.es_el_mismo_estandar||'NO_EVALUABLE').toUpperCase();
+    h+='<div class="box" style="margin-bottom:10px"><b>'+a.__n+'</b> '+
+      '<span class="chip '+(mismo==='NO'?'si':'no')+'">mismo estándar: '+mismo+'</span><br>'+
+      '<span style="font-size:12.5px;color:var(--ten)">Más exigente con: <b>'+(s.donde_se_exige_mas||'—')+
+      '</b> · Menos exigente con: <b>'+(s.donde_se_exige_menos||'—')+'</b></span>'+
+      (s.cita_que_lo_demuestra?'<p style="font-size:12px;margin:7px 0 0;font-style:italic">«'+s.cita_que_lo_demuestra+'»</p>':'')+
+      '</div>';
+  });
+  var nos=A.filter(function(a){return ((a.tarea_5_simetria||{}).es_el_mismo_estandar||'').toUpperCase()==='NO';}).length;
+  if(A.length>1)h+='<p><b>Convergencia:</b> '+nos+' de '+A.length+' auditores detectan asimetría de estándar. '+
+    (nos===A.length?'<b style="color:var(--alerta)">Coincidencia total — señal fuerte.</b>':
+     (nos===0?'<b style="color:var(--placa)">Ninguno detecta asimetría.</b>':'Coincidencia parcial.'))+'</p>';
+  $('sim').innerHTML=h;
+}
+function sesgo(A){
+  var h='';
+  A.forEach(function(a){
+    var s=a.sesgo_direccional_detectado||{};
+    var ex=(s.existe||'NO_EVALUABLE').toUpperCase();
+    h+='<div class="box" style="margin-bottom:10px"><b>'+a.__n+'</b> '+
+      '<span class="chip '+(ex==='SI'?'si':'no')+'">'+ex+'</span>'+
+      (s.direccion?' <span style="font-size:12.5px">Dirección: <b>'+s.direccion+'</b></span>':'')+
+      (s.evidencia_textual?'<p style="font-size:12px;margin:7px 0 0;font-style:italic">«'+s.evidencia_textual+'»</p>':'')+
+      '</div>';
+  });
+  $('ses').innerHTML=h;
+}
+function objeciones(A){
+  var h='';
+  A.forEach(function(a){
+    var o=a.objeciones_conceptuales||[];
+    h+='<div class="box" style="margin-bottom:10px"><b>'+a.__n+'</b><ul>'+
+      (o.length?o.map(function(x){return '<li>'+x+'</li>';}).join(''):'<li>—</li>')+'</ul></div>';
+  });
+  $('obj').innerHTML=h;
+}
+function numericas(A){
+  var h='<thead><tr><th>Auditor</th><th>Afirmación</th><th>Fuente</th><th>Confianza</th></tr></thead><tbody>';
+  var n=0;
+  A.forEach(function(a){
+    (a.afirmaciones_numericas||[]).forEach(function(x){
+      n++;h+='<tr><td class="id">'+a.__n+'</td><td>'+(x.afirmacion||'')+'</td><td>'+(x.fuente||'—')+
+      '</td><td class="n">'+(x.confianza||'—')+'</td></tr>';
+    });
+  });
+  if(!n)h+='<tr><td colspan="4">Ninguna afirmación numérica declarada.</td></tr>';
+  $('tn').innerHTML=h+'</tbody>';
+}
+function fusibles(A){
+  var h='';
+  A.forEach(function(a){
+    var f=a.tarea_2_fusible_no_falsable||{};
+    h+='<div class="box" style="margin-bottom:10px"><b>'+a.__n+'</b> → <span class="chip">'+(f.rama_id||'—')+'</span>'+
+      (f.por_que_no_es_falsable?'<p style="font-size:12.5px;margin:7px 0 0">'+f.por_que_no_es_falsable+'</p>':'')+
+      (f.reescritura_propuesta?'<p style="font-size:12.5px;margin:7px 0 0;color:var(--tinta)"><b>Reescritura:</b> '+f.reescritura_propuesta+'</p>':'')+
+      '</div>';
+  });
+  $('fus').innerHTML=h;
+}
+function exportar(){
+  if(!CONS){say('Consolida primero.','err');return;}
+  var blob=new Blob([JSON.stringify({generado:new Date().toISOString(),pesos_tablero:PESOS,auditorias:CONS},null,1)],{type:'application/json'});
+  var u=URL.createObjectURL(blob),a=document.createElement('a');
+  a.href=u;a.download='consolidado-ronda1.json';a.click();URL.revokeObjectURL(u);
+}
+function limpiar(){['a1','a2','a3'].forEach(function(i){$(i).value='';});$('out').style.display='none';say('','');document.getElementById('msg').className='msg';}
+function demo(){
+  $('a1').value=JSON.stringify({auditor:"Ejemplo-A",fecha:"2026-09-22",
+    tarea_1_rama_peor_sostenida:{rama_id:"captura_anthropic_fuerza",peso_del_analista:35,peso_que_yo_asignaria:20,motivo:"Evidencia circunstancial; ninguna acción estatal consumada."},
+    tarea_2_fusible_no_falsable:{rama_id:"mecanica_fluidos",fusible_original:"—",por_que_no_es_falsable:"Modelo explicativo sin umbral.",reescritura_propuesta:"Definir 3 predicciones ex ante por trimestre."},
+    tarea_3_ausencia:{que_falta:"India como actor autónomo",por_que_importa:"Aparece solo como objeto."},
+    tarea_4_pesos:[{rama_id:"ormuz_colapso",mi_peso:80,justificacion:"Tráfico verificado."},
+      {rama_id:"migracion_palanca_canarias",mi_peso:55,justificacion:"Multicausal."}],
+    tarea_5_simetria:{estandar_atribucion_A:"Cuerpo estatal",estandar_atribucion_B:"Documentos oficiales",estandar_atribucion_C:"Gobierno",
+      es_el_mismo_estandar:"NO",donde_se_exige_mas:"B",donde_se_exige_menos:"A",cita_que_lo_demuestra:"—"},
+    objeciones_conceptuales:["Ejemplo de objeción."],
+    afirmaciones_numericas:[{afirmacion:"Ejemplo 12%",fuente:"—",confianza:"baja"}],
+    sesgo_direccional_detectado:{existe:"SI",direccion:"pro-occidental",evidencia_textual:"—"}},null,1);
+  say('Ejemplo cargado en el auditor 1. Pulsa Consolidar.','ok');
+}
+</script></html>

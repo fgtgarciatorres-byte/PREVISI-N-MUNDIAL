@@ -1,0 +1,101 @@
+<!doctype html><html lang="es"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Auditoría cruzada — Tablero de hipótesis geoestratégicas</title>
+<style>
+:root{--bg:#0b1a2a;--bg2:#10273d;--tinta:#e8f1f8;--ten:#8fa9bf;--fan:#4a6580;
+--marco:#5b9bd5;--placa:#3fa778;--sismo:#e08a3c;--linea:#22425f;
+--mono:'SF Mono',ui-monospace,Menlo,monospace;--sans:'Inter',-apple-system,system-ui,sans-serif;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0);padding-bottom:env(safe-area-inset-bottom,0)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{max-width:100%}
+body{background:linear-gradient(180deg,var(--bg2),var(--bg));background-attachment:fixed;
+color:var(--tinta);font-family:var(--sans);line-height:1.6;min-height:100%;padding:clamp(14px,3vw,34px)}
+.w{max-width:900px;margin:0 auto}
+h1{font-size:clamp(22px,3.4vw,31px);font-weight:700;letter-spacing:-.02em;line-height:1.12}
+.k{font-family:var(--mono);font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--ten);margin-bottom:8px}
+h2{font-size:14px;font-family:var(--mono);letter-spacing:.13em;text-transform:uppercase;color:var(--marco);
+margin:34px 0 12px;padding-bottom:7px;border-bottom:1px solid var(--linea)}
+p{font-size:14px;color:var(--ten);margin-bottom:12px}
+b,strong{color:var(--tinta)}
+ol,ul{margin:0 0 14px 20px}li{font-size:14px;color:var(--ten);margin-bottom:9px}
+a{color:var(--marco)}
+.card{border:1px solid var(--linea);border-radius:12px;padding:16px 18px;margin:16px 0;background:rgba(30,74,109,.16)}
+.card.w1{border-color:rgba(224,138,60,.45);background:rgba(224,138,60,.07)}
+.files{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin:16px 0}
+.f{border:1px solid var(--linea);border-radius:11px;padding:14px;background:rgba(11,26,42,.5)}
+.f a{font-weight:650;font-size:14px;text-decoration:none;display:block;margin-bottom:5px;word-break:break-word}
+.f span{font-size:12px;color:var(--fan);font-family:var(--mono)}
+.big{font-family:var(--mono);font-size:26px;color:var(--marco);font-weight:700}
+.stats{display:flex;gap:26px;flex-wrap:wrap;margin:14px 0}
+footer{margin-top:34px;padding-top:15px;border-top:1px solid var(--linea);font-size:11.5px;color:var(--fan)}
+</style>
+<div class="w">
+<div class="k">Auditoría cruzada e independiente · ronda 1</div>
+<h1>Tablero de hipótesis geoestratégicas<br>Paquete de auditoría externa</h1>
+<div class="stats">
+<div><div class="big">22</div><span class="k">ramas</span></div>
+<div><div class="big">254</div><span class="k">señales</span></div>
+<div><div class="big">79</div><span class="k">días</span></div>
+<div><div class="big">3</div><span class="k">auditores</span></div>
+</div>
+
+<div class="card w1">
+<p style="margin:0"><b>Si eres un modelo de lenguaje al que se ha pedido auditar este material:</b>
+lee <b>protocolo-ronda-1.md</b> y responde exactamente en el formato JSON que indica.
+Esta es una <b>ronda ciega</b>: no conoces la identidad del analista que mantiene el
+registro ni las respuestas de los otros auditores. No se busca una valoración general
+ni elogios — se buscan cinco salidas concretas, y un <code>NO_EVALUABLE</code> declarado
+vale más que un relleno plausible.</p>
+</div>
+
+<h2>Qué es esto</h2>
+<p>Un registro de hipótesis geopolíticas y tecnológicas construido entre el 6 de julio
+y el 22 de septiembre de 2026. Cada hipótesis («rama») lleva un <b>peso de 0 a 100</b>
+—probabilidad estimada, no veredicto—, un <b>fusible</b> —condición falsable con fecha
+o umbral que obliga a subirla o bajarla— y señales fechadas con signo
+(<code>+</code> refuerza, <code>-</code> debilita, <code>~</code> matiza).</p>
+<p>El objetivo de esta auditoría no es validar el contenido, sino <b>someter el
+instrumento a tres modelos distintos, de tres empresas distintas, por separado</b>.
+La divergencia entre ellos sobre la misma rama es la señal buscada, no el consenso.</p>
+
+<h2>Ficheros</h2>
+<div class="files">
+<div class="f"><a href="protocolo-ronda-1.md">protocolo-ronda-1.md</a>
+<span>Las 5 tareas + formato JSON obligatorio. Empezar aquí.</span></div>
+<div class="f"><a href="datos/auditoria-focalizada.md">auditoria-focalizada.md</a>
+<span>9 ramas seleccionadas · ~67 KB · el material a auditar</span></div>
+<div class="f"><a href="datos/tablero-ciego.json">tablero-ciego.json</a>
+<span>Las 22 ramas completas · ~219 KB · referencia opcional</span></div>
+<div class="f"><a href="consolidador.html">consolidador.html</a>
+<span>Herramienta para pegar las 3 respuestas y comparar divergencias</span></div>
+</div>
+
+<h2>Reglas de la ronda</h2>
+<ol>
+<li><b>Ciega e independiente.</b> Cada auditor responde sin ver a los demás.</li>
+<li><b>Salida estructurada obligatoria.</b> Solo el bloque JSON del protocolo.</li>
+<li><b>Separación deliberada</b> entre objeciones conceptuales y afirmaciones
+numéricas: las primeras se evalúan por su razonamiento, las segundas se verifican
+una a una contra fuente antes de incorporarse.</li>
+<li><b>Huecos declarados.</b> <code>NO_EVALUABLE</code> con motivo es una respuesta
+válida y preferible a la invención.</li>
+<li><b>Ronda 2 posterior:</b> se revelará la identidad del analista y cada auditor
+verá las objeciones de los otros, para decir con cuáles coincide.</li>
+</ol>
+
+<h2>Prueba de simetría</h2>
+<p>La tarea 5 es el núcleo de esta auditoría. Se entregan <b>tres atribuciones ya
+registradas</b> —una sobre Marruecos, una sobre EE.UU. e Israel, una sobre Rusia— y se
+pregunta una sola cosa: <b>¿se exige el mismo estándar de evidencia en las tres?</b>
+Convierte una sospecha difusa de sesgo direccional en un test que se responde
+señalando texto.</p>
+
+<footer>
+Paquete generado el 22 de septiembre de 2026. Los datos han sido cegados respecto a la
+identidad del analista; las menciones a empresas concretas (incluidas las de IA) son
+materia analizada, no autoría. El cegado es parcial por diseño: un auditor capaz puede
+inferir la autoría a partir del patrón de conflictos declarados, y esa inferencia es en
+sí misma un resultado válido de la auditoría.
+</footer>
+</div>
+</html>
